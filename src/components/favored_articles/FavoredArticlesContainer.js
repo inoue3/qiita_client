@@ -5,7 +5,7 @@ import {
 
 import axios from 'axios';
 
-import { parseString } from 'xml2js';
+import { parseString } from 'react-native-xml2js';
 
 export default class FavoredArticlesContainer extends Component {
   static navigationOptions = {
@@ -26,7 +26,7 @@ export default class FavoredArticlesContainer extends Component {
     axios.get('https://qiita.com/popular-items/feed')
       .then(response =>
         parseString(response, obj =>
-          console.log(obj)
+          console.log(obj.data)
         )
       )
   }
