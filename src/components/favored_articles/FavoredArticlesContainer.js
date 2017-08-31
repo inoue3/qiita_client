@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text, View
+  Text, View, StyleSheet, FlatList
 } from 'react-native';
 
 import axios from 'axios';
@@ -17,35 +17,47 @@ export default class FavoredArticlesContainer extends Component {
   };
 
   componentDidMount() {
-    axios.get('https://qiita.com/api/v2/items', { params: { sort: 'likes_count' } })
-      .then((response) => {
-        this.setState({data: response.data})
-      }).catch((response) => {
-        console.log(response)
-      })
     axios.get('https://qiita.com/popular-items/feed')
       .then(response =>
-        parseString(response, obj =>
-          console.log(obj.data)
-        )
-      )
+        parseString(response.data, (err, obj) => this.setState({data: obj.feed.entry}))
+      ).catch(response => console.log(response))
   }
 
   render() {
-    let contents = (<View/>);
-    if (this.state.data) {
-      contents = this.state.data.map(item => (
-        <View key={`${this.constructor.name}-${item.id}`}>
-          <Text>
-            {item.title}
-          </Text>
-        </View>
-      ));
-    }
     return (
-      <View>
-        {contents}
-      </View>
+      <FlatList
+        data={this.state.data}
+        keyExtractor={(item, index) => (`${this.constructor.name}-${item.id}`)}
+        renderItem={({item}) => (
+          <View style={styles.box}>
+          <Text>
+          {item.title}
+          </Text>
+          <Text>
+          {item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'').replace(/\n/g, '')}
+          </Text>
+          <Text>
+
+          </Text>
+          </View>
+          )}
+        style={styles.container} />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#d6d7da',
+  },
+  box: {
+    padding: 10
+  },
+  division: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#d6d7da'
+  }
+});
