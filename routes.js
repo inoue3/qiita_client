@@ -1,7 +1,7 @@
 import { StackNavigator } from 'react-navigation';
-import HomeScreen from './components/Home';
-import FavoredArticlesContainer from './components/favored_articles/FavoredArticlesContainer';
-import NewArticlesContainer from './components/new_articles/NewArticlesContainer';
+import HomeScreen from './src/components/Home';
+import FavoredArticlesContainer from './src/components/favored_articles/FavoredArticlesContainer';
+import NewArticlesContainer from './src/components/new_articles/NewArticlesContainer';
 
 export const Routes = {
   Home: { screen: HomeScreen , page: 'Home'},

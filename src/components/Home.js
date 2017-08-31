@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import {
   Routes
-} from '../routes';
+} from '../../routes';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
