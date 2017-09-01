@@ -1,12 +1,18 @@
-import { StackNavigator } from 'react-navigation';
-import HomeScreen from './src/components/Home';
-import FavoredArticlesContainer from './src/components/favored_articles/FavoredArticlesContainer';
-import NewArticlesContainer from './src/components/new_articles/NewArticlesContainer';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Router, Scene } from 'react-native-router-flux';
+import Home from './src/components/Home';
+import FavoredArticles from './src/components/favored_articles/favored_articles.sceen';
+import NewArticles from './src/components/new_articles/NewArticlesContainer';
 
-export const Routes = {
-  Home: { screen: HomeScreen , page: 'Home'},
-  FavoredArticles: { screen: FavoredArticlesContainer , page: 'FavoredArticles'},
-  NewArticles: { screen: NewArticlesContainer , page: 'NewArticles'}
-}
+const DefaultRouterWithRedux = connect()(Router);
 
-export const App = StackNavigator(Routes)
+export default () => (
+  <DefaultRouterWithRedux>
+    <Scene key="root">
+      <Scene key="home" component={Home} />
+      <Scene key="favoredArticles" component={FavoredArticles} />
+      <Scene key="newArticles" component={NewArticles} />
+    </Scene>
+  </DefaultRouterWithRedux>
+)

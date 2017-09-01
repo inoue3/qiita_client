@@ -1,40 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Text, View, StyleSheet, FlatList
 } from 'react-native';
+import { fetchData } from './action';
 
-import axios from 'axios';
-
-import { parseString } from 'react-native-xml2js';
-
-export default class FavoredArticlesContainer extends Component {
+class FavoredArticlesContainer extends Component {
   static navigationOptions = {
     title: '人気記事一覧',
   };
 
-  state = {
-    data: '',
-  };
-
   componentDidMount() {
-    axios.get('https://qiita.com/popular-items/feed')
-      .then(response =>
-        parseString(response.data, (err, obj) => this.setState({data: obj.feed.entry}))
-      ).catch(response => console.log(response))
+    this.props.onMountRequest();
   }
 
   render() {
     return (
       <FlatList
-        data={this.state.data}
+        data={this.props.data || ''}
         keyExtractor={(item, index) => (`${this.constructor.name}-${item.id}`)}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <View style={styles.box}>
             <Text>
               {item.title}
             </Text>
             <Text>
-              {item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'').replace(/\n/g, '')}
+              {item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').replace(/\n/g, '')}
             </Text>
             <Text>
 
@@ -61,3 +52,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#d6d7da'
   }
 });
+
+const mapStateToProps = state => ({
+	data: state.favoredArticles.data
+})
+
+const mapDispatchToProps = dispatch => ({
+	onMountRequest: () => fetchData(dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoredArticlesContainer)

@@ -1,0 +1,3 @@
+export default {
+  GET_FAVORED_ARTICLES: 'GET_FAVORED_ARTICLES'
+}

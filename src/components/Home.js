@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet, Text, Button, View
 } from 'react-native';
-import {
-  Routes
-} from '../../routes';
+import { Actions } from 'react-native-router-flux';
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -26,11 +24,11 @@ export default class HomeScreen extends Component {
           Cmd+D or shake for dev menu
         </Text>
         <Button
-          onPress={() => navigate(Routes.FavoredArticles.page)}
+          onPress={Actions.favoredArticles}
           title="人気記事へ"
         />
         <Button
-          onPress={() => navigate(Routes.NewArticles.page)}
+          onPress={Actions.newArticles}
           title="新着記事へ"
         />
       </View>
