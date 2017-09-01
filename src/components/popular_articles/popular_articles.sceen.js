@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-	data: state.favoredArticles.data
+	data: state.popularArticles.data
 })
 
 const mapDispatchToProps = dispatch => ({

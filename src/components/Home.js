@@ -24,7 +24,7 @@ export default class HomeScreen extends Component {
           Cmd+D or shake for dev menu
         </Text>
         <Button
-          onPress={Actions.favoredArticles}
+          onPress={Actions.popularArticles}
           title="人気記事へ"
         />
         <Button

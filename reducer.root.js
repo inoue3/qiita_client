@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import favoredArticles from './src/components/favored_articles/reducer';
+import popularArticles from './src/components/popular_articles/reducer';
 
 export default combineReducers({
-  favoredArticles,
+	popularArticles,
 });

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { parseString } from 'react-native-xml2js';
 import Types from '../../../type.root';
 
-export const { getFavoredArticles } = createActions(Types.GET_FAVORED_ARTICLES);
+export const { getPopularArticles } = createActions(Types.GET_POPULAR_ARTICLES);
 
 export const fetchData = (dispatch) => {
 	return axios.get('https://qiita.com/popular-items/feed')
@@ -12,6 +12,6 @@ export const fetchData = (dispatch) => {
 			parseString(response.data, (err, obj) => (data = obj));
 			return data.feed.entry;
 		})
-		.then(data => dispatch(getFavoredArticles(data)))
+		.then(data => dispatch(getPopularArticles(data)))
 		.catch(err => console.warn(err));
 }
