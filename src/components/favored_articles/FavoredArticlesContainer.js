@@ -30,17 +30,17 @@ export default class FavoredArticlesContainer extends Component {
         keyExtractor={(item, index) => (`${this.constructor.name}-${item.id}`)}
         renderItem={({item}) => (
           <View style={styles.box}>
-          <Text>
-          {item.title}
-          </Text>
-          <Text>
-          {item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'').replace(/\n/g, '')}
-          </Text>
-          <Text>
+            <Text>
+              {item.title}
+            </Text>
+            <Text>
+              {item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'').replace(/\n/g, '')}
+            </Text>
+            <Text>
 
-          </Text>
+            </Text>
           </View>
-          )}
+        )}
         style={styles.container} />
     );
   }
