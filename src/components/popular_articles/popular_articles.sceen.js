@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
 	Text, View, StyleSheet, FlatList
 } from 'react-native';
-import { fetchData } from './action';
+import { fetchPopularArticles } from '../../actions/popular_articles_action';
 
 class PopularArticles extends Component {
 	static navigationOptions = {
@@ -57,8 +57,8 @@ const mapStateToProps = state => ({
 	data: state.popularArticles.data
 })
 
-const mapDispatchToProps = dispatch => ({
-	onMountRequest: () => fetchData(dispatch)
-})
+const mapDispatchToProps = {
+	onMountRequest: fetchPopularArticles
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopularArticles)

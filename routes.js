@@ -18,4 +18,4 @@ export default () => (
       <Scene key="articleDetail" component={ArticleDetail} />
     </Scene>
   </DefaultRouterWithRedux>
-)
+);

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import Types from '../../../type.root';
+import Types from '../../type.root';
 
 const defaultState = { data: null };
 
