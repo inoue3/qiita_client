@@ -1,0 +1,3 @@
+export default {
+  GET_POPULAR_ARTICLES: 'GET_POPULAR_ARTICLES'
+}

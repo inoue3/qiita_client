@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
-import { Routes } from '../../../routes';
+import { Actions } from 'react-native-router-flux';
 
 const Card = ({ article, navigate }) => {
   const { user, title, url } = article;
+  console.log(article);
   return (
-    <TouchableOpacity style={styles.containerStyle} onPress={() => navigate(Routes.ArticleDetail.page, url)}>
+    <TouchableOpacity style={styles.containerStyle} onPress={() => Actions.articleDetail(url)}>
       <View style={styles.thumbnailContainerStyle}>
         <Image style={styles.thumbnailStyle} source={{ uri: user.profile_image_url }} />
       </View>
