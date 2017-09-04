@@ -4,14 +4,13 @@ import { Actions } from 'react-native-router-flux';
 
 const Card = ({ article, navigate }) => {
   const { user, title, url } = article;
-  console.log(article);
   return (
     <TouchableOpacity style={styles.containerStyle} onPress={() => Actions.articleDetail(url)}>
       <View style={styles.thumbnailContainerStyle}>
-        <Image style={styles.thumbnailStyle} source={{ uri: user.profile_image_url }} />
+        {/*<Image style={styles.thumbnailStyle} source={{ uri: user.profile_image_url }} />*/}
       </View>
       <View style={styles.bodyStyle}>
-        <Text>{user.id}</Text>
+        {/*<Text>{user.id}</Text>*/}
         <Text>{title}</Text>
       </View>
     </TouchableOpacity>
@@ -47,7 +46,6 @@ const styles = {
   },
   bodyStyle: {
     width: 280
-
   }
 };
 
