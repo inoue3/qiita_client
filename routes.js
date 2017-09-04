@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Router, Scene } from 'react-native-router-flux';
 import Home from './src/components/Home';
 import PopularArticles from './src/components/popular_articles/popular_articles.sceen';
-import NewArticles from './src/components/new_articles/NewArticlesContainer';
+import NewArticles from './src/components/new_articles/new_articles.sceen';
 import ArticleDetail from './src/components/ArticleDetailContainer';
 
 
