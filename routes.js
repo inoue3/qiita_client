@@ -5,6 +5,7 @@ import Home from './src/components/Home';
 import PopularArticles from './src/components/popular_articles/popular_articles.sceen';
 import NewArticles from './src/components/new_articles/new_articles.sceen';
 import ArticleDetail from './src/components/article_detail/article_detail.sceen';
+import SearchArticles from './src/components/search/search.sceen';
 
 
 const DefaultRouterWithRedux = connect()(Router);
@@ -16,6 +17,7 @@ export default () => (
       <Scene key="popularArticles" component={PopularArticles} />
       <Scene key="newArticles" component={NewArticles} />
       <Scene key="articleDetail" component={ArticleDetail} />
+      <Scene key="searchArticles" component={SearchArticles} />
     </Scene>
   </DefaultRouterWithRedux>
 );
