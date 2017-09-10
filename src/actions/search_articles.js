@@ -6,11 +6,7 @@ const actions = createActions(type.SEARCH_ARTICLES);
 export const searchArticles = (page, size, query) => (dispatch) => {
   return api.fetchArticles(page, size, query)
     .then(response => {
-      dispatch({
-        type: type.SEARCH_ARTICLES,
-        payload: response.data,
-        isLoading: false
-      });
+      dispatch(actions.searchArticles(response.data));
     })
 };
 
