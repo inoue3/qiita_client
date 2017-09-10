@@ -10,9 +10,3 @@ export const searchArticles = (page, size, query) => (dispatch) => {
     })
 };
 
-export const startLoading = () => {
-  return {
-    type: type.START_LOADING
-  }
-};
-

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, Button, ScrollView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { searchArticles, startLoading } from '../../actions/search_articles';
+import { searchArticles } from '../../actions/search_articles';
 import Card from "../common/Card";
 
 class NewArticles extends Component {
@@ -9,11 +9,17 @@ class NewArticles extends Component {
     title: '検索',
   };
 
-  state = { query: '' };
+  state = {
+    query: '',
+    isLoading: false
+  };
 
   search() {
-    this.props.startLoading();
-    this.props.searchArticles(1, 100, this.state.query);
+    this.setState({ isLoading: true });
+    this.props.searchArticles(1, 100, this.state.query)
+      .then(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
   renderArticles() {
@@ -26,7 +32,6 @@ class NewArticles extends Component {
   }
 
   render() {
-    console.log(this.props.isLoading);
     return (
       <ScrollView>
         <TextInput
@@ -39,7 +44,7 @@ class NewArticles extends Component {
           onPress={() => this.search()}
         />
         <ActivityIndicator
-          animating={this.props.isLoading}
+          animating={this.state.isLoading}
           style={{ alignItems: 'center', justifyContent: 'center', padding: 8, height: 40 }}
           size="large"
         />
@@ -50,13 +55,11 @@ class NewArticles extends Component {
 }
 
 const mapStateToProps = state => ({
-  articles: state.search.articles,
-  isLoading: state.search.isLoading
+  articles: state.search,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   searchArticles: (page, size, query) => dispatch(searchArticles(page, size, query)),
-  startLoading: () => dispatch(startLoading()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewArticles);
