@@ -7,6 +7,6 @@ const instance = axios.create({
 
 export default {
   fetchArticles(page = 1, per_page = 100, query) {
-    return instance.get('api/v2/items', { page, per_page, query })
+    return instance.get('api/v2/items', { params: { page, per_page, query }})
   }
 }
