@@ -4,6 +4,7 @@ import configureStore from './store.root';
 
 import {
   AppRegistry,
+  Linking
 } from 'react-native';
 
 import Routes from './routes';
@@ -11,7 +12,6 @@ import Routes from './routes';
 const store = configureStore();
 
 class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
