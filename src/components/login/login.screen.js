@@ -9,50 +9,48 @@ import Config from 'react-native-config'
 import { Actions } from 'react-native-router-flux';
 import { setToken } from '../../actions/login';
 
-
 class Login extends Component {
-	componentDidMount() {
-		 this.checkToken = uuid();
+  componentDidMount() {
+    this.checkToken = uuid();
 
-		const query = {
-			client_id: Config.CLIENT_ID,
-			scope: 'read_qiita+write_qiita',
-			state: this.checkToken
-		};
+    const query = {
+      client_id: Config.CLIENT_ID,
+      scope: 'read_qiita+write_qiita',
+      state: this.checkToken
+    };
 
-		Linking.openURL('https://qiita.com/api/v2/oauth/authorize?' + queryString.stringify(query));
+    Linking.openURL('https://qiita.com/api/v2/oauth/authorize?' + queryString.stringify(query));
 
-		Linking.addEventListener('url', this._handleOpenURL.bind(this));
-	}
+    Linking.addEventListener('url', this._handleOpenURL.bind(this));
+  }
 
-	_handleOpenURL(event) {
-		const { state, code } = queryString.parse(url.parse(event.url).query);
+  _handleOpenURL(event) {
+    const { state, code } = queryString.parse(url.parse(event.url).query);
 
-		if (this.checkToken !== state) {
-			console.error('不正なurlを取得');
-			return;
-		}
+    if (this.checkToken !== state) {
+      console.error('不正なurlを取得');
+      return;
+    }
 
-		const query = {
-			client_id: Config.CLIENT_ID,
-			client_secret: Config.CLIENT_SECRET,
-			code
-		};
+    const query = {
+      client_id: Config.CLIENT_ID,
+      client_secret: Config.CLIENT_SECRET,
+      code
+    };
 
-		axios.post('https://qiita.com/api/v2/access_tokens', query)
-			.then(res => this.props.onLoadToken(res.data.token))
-			.then(() => Actions.home());
-		Linking.removeEventListener('url', this._handleOpenURL);
-	}
+    axios.post('https://qiita.com/api/v2/access_tokens', query)
+      .then(res => this.props.onLoadToken(res.data.token))
+      .then(() => Actions.home());
+    Linking.removeEventListener('url', this._handleOpenURL);
+  }
 
-	render() {
-		return null;
-	}
+  render() {
+    return null;
+  }
 }
 
 const mapDispatchToProps = {
-		onLoadToken: setToken
+  onLoadToken: setToken
 };
-
 
 export default connect(null, mapDispatchToProps)(Login);

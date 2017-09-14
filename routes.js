@@ -11,14 +11,14 @@ import SearchArticles from './src/components/search/search.sceen';
 const DefaultRouterWithRedux = connect()(Router);
 
 export default () => (
-	<DefaultRouterWithRedux>
-		<Scene key="root">
-			<Scene key="home" component={Home} />
-			<Scene key="popularArticles" component={PopularArticles} />
-			<Scene key="newArticles" component={NewArticles} />
-			<Scene key="articleDetail" component={ArticleDetail} />
-			<Scene key="login" component={Login} />
-			<Scene key="searchArticles" component={SearchArticles} />
-		</Scene>
-	</DefaultRouterWithRedux>
+  <DefaultRouterWithRedux>
+    <Scene key="root">
+      <Scene key="home" component={Home} />
+      <Scene key="popularArticles" component={PopularArticles} />
+      <Scene key="newArticles" component={NewArticles} />
+      <Scene key="articleDetail" component={ArticleDetail} />
+      <Scene key="login" component={Login} />
+      <Scene key="searchArticles" component={SearchArticles} />
+    </Scene>
+  </DefaultRouterWithRedux>
 );
