@@ -2,8 +2,9 @@ import { createActions } from 'redux-actions'
 
 export const actions =  {
   login,
-  fetchProfile
-} = createActions('LOGIN', 'FETCH_PROFILE');
+  fetchProfile,
+  fetchStock
+} = createActions('LOGIN', 'FETCH_PROFILE', 'FETCH_STOCK');
 
 export default {
   GET_POPULAR_ARTICLES: 'GET_POPULAR_ARTICLES',

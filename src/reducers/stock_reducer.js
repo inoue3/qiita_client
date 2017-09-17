@@ -4,7 +4,7 @@ import { actions } from '../../type.root';
 const defaultState = {};
 
 export default handleActions({
-  [actions.fetchProfile]: (state, action) => ({
+  [actions.fetchStock]: (state, action) => ({
     ...state,
     ...action.payload
   })

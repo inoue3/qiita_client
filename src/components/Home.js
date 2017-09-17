@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { fetchProfile } from '../actions/home_action';
+import { fetchProfile } from '../actions/profile_action';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -12,7 +12,9 @@ class HomeScreen extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchProfile();
+    if (this.props.isLoggedIn) {
+      this.props.fetchProfile();
+    }
   }
 
   renderProfile() {
@@ -49,12 +51,16 @@ class HomeScreen extends Component {
           title="新着記事へ"
         />
         <Button
-          onPress={Actions.login}
-          title="ログイン"
-        />
-        <Button
           onPress={Actions.searchArticles}
           title="検索"
+        />
+        <Button
+          onPress={Actions.stockArticles}
+          title="ストック一覧"
+        />
+        <Button
+          onPress={Actions.login}
+          title="ログイン"
         />
       </View>
 
