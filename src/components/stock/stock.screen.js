@@ -1,45 +1,45 @@
 import React, { Component } from 'react';
-import { ScrollView, ActivityIndicator } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchStock } from '../../actions/stock_action';
 import Card from "../common/Card";
 
 class StockScreen extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
+    page: 1,
   };
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    this.props.fetchStock()
-      .then(() => this.setState({ isLoading: false }));
+    this.fetchArticles();
   }
 
-  renderIndicator() {
-    if (this.state.isLoading) {
-      return (<ActivityIndicator
-        style={{ alignItems: 'center', justifyContent: 'center', padding: 8, height: 40 }}
-        size="large"
-      />);
-    }
-  }
-
-  renderArticles() {
-    if (!this.props.stockArticles) {
-      return null;
-    }
-    return this.props.stockArticles.map(stock => {
-      return <Card key={stock.id} article={stock} navigate={this.state.navigate} />
-    });
+  renderArticles({item}) {
+    return (<Card key={item.id} article={item} />);
   }
 
   render() {
     return (
-      <ScrollView>
-        {this.renderIndicator()}
-        {this.renderArticles()}
-      </ScrollView>
+      <FlatList
+        data={this.props.stockArticles}
+        renderItem={this.renderArticles}
+        refreshing={this.state.isLoading}
+        onRefresh={this.fetchArticles.bind(this)}
+        onEndReached={this.fetchNextArticles.bind(this)}
+      />
     );
+  }
+
+  fetchNextArticles() {
+    this.setState({ page: this.state.page + 1 });
+    this.fetchArticles();
+  }
+
+  fetchArticles() {
+    this.setState({ isLoading: true });
+    console.log(this.state.page);
+    this.props.fetchStock(this.state.page)
+      .then(() => this.setState({ isLoading: false }));
   }
 }
 
