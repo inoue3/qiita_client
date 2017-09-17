@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import Card from "../common/Card";
 import { connect } from 'react-redux';
 import { fetchNewArticles } from '../../actions/new_articles_action';
