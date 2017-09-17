@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import {
   StyleSheet, Text, Button, View
 } from 'react-native';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { fetchProfile } from '../actions/home_action';
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Welcome',
   };
+
+  componentDidMount() {
+    this.props.fetchProfile();
+  }
+
+  renderProfile() {
+    if (this.props.isLoggedIn) {
+      return (
+        <Text>
+          Welcome {this.props.profile.id}
+        </Text>
+      )
+    }
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -23,6 +39,7 @@ export default class HomeScreen extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        {this.renderProfile()}
         <Button
           onPress={Actions.popularArticles}
           title="人気記事へ"
@@ -44,6 +61,15 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.login,
+  profile: state.profile
+});
+
+const mapDispatchToProps = { fetchProfile };
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {

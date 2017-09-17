@@ -1,8 +1,9 @@
 import { createActions } from 'redux-actions'
 
 export const actions =  {
-  login
-} = createActions('LOGIN');
+  login,
+  fetchProfile
+} = createActions('LOGIN', 'FETCH_PROFILE');
 
 export default {
   GET_POPULAR_ARTICLES: 'GET_POPULAR_ARTICLES',
