@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, Linking, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const Card = ({ article, navigate }) => {
+const Card = ({ article }) => {
   const { user, title, url } = article;
   return (
     <TouchableOpacity style={styles.containerStyle} onPress={() => Actions.articleDetail(url)}>
