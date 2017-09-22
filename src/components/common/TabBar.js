@@ -1,53 +1,41 @@
 import React, { Component } from 'react';
-import { View, Image   } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { Actions } from 'react-native-router-flux';
-import { Icon } from 'react-native-vector-icons/FontAwesome';
+import PopularArticles from '../popular_articles/popular_articles.sceen';
 
 class TabBar extends Component {
-
-  state = { selectedTab: 'new' };
-
-  onNewPressTab() {
-    Actions.newArticles();
-    this.setState({ selectedTab: 'new' });
-  }
-  onPopularPressTab(params) {
-    Actions.popularArticles();
-    this.setState({ selectedTab: 'popular' });
-  }
-  onSearchPressTab(params) {
-    Actions.searchArticles();
-    this.setState({ selectedTab: 'search' });
-  }
-  onStockPressTab(params) {
-    Actions.searchArticles();
-    this.setState({ selectedTab: 'stock' });
-  }
 
   render() {
     return (
       <View>
-      <TabNavigator>
+      <TabNavigator style={styles.tabBody}>
         <TabNavigator.Item
-          selected={this.state.selectedTab === 'new'}
           title="新着記事"
-          onPress={() => this.onNewPressTab()}
+          renderIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={ styles.tabButton } />}
+          renderSelectedIcon={() => <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTUxGrvNHT9RN5PBwtF6g0zJAbD_azZO0KnGT7mB7WTB734t1Kzg' }}style={ styles.tabButton }  />}
+          onPress={() => Actions.newArticles()}
         >
         </TabNavigator.Item>
         <TabNavigator.Item
           title="人気記事"
-          onPress={() => this.onPopularPressTab()}
+          renderIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={ styles.tabButton } />}
+          renderSelectedIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />}
+          onPress={() => Actions.popularArticles()}
         >
         </TabNavigator.Item>
         <TabNavigator.Item
           title="検索"
-          onPress={() => this.onSearchPressTab()}
+          renderIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={ styles.tabButton } />}
+          renderSelectedIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />}
+          onPress={() => Actions.searchArticles()}
         >
         </TabNavigator.Item>
         <TabNavigator.Item
           title="ストック"
-          onPress={() => this.onStockPressTab()}
+          renderIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={ styles.tabButton } />}
+          renderSelectedIcon={() => <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />}
+          onPress={() => Actions.searchArticles()}
         >
         </TabNavigator.Item>
       </TabNavigator>
@@ -55,5 +43,15 @@ class TabBar extends Component {
     );
   };
 }
+
+const styles = StyleSheet.create({
+  tabBody:{
+    flex:1
+  },
+  tabButton: {
+    width:22,
+    height:22
+  },
+});
 
 export default TabBar;
