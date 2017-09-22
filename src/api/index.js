@@ -32,10 +32,16 @@ export default {
 
     return instance.get(`api/v2/users/${user_id}/stocks`, { headers, params })
 <<<<<<< HEAD
+<<<<<<< HEAD
   },
   fetchAccessToken(query) {
     return axios.post('https://qiita.com/api/v2/access_tokens', query)
 =======
 >>>>>>> flatlist
+=======
+  },
+  fetchAccessToken(query) {
+    return axios.post('https://qiita.com/api/v2/access_tokens', query)
+>>>>>>> レビュー修正
   }
 }
