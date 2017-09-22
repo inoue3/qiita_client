@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store.root';
 
 import {
-  AppRegistry
+  AppRegistry,
 } from 'react-native';
 
 import Routes from './routes';

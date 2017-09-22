@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import url from 'url';
 import queryString from 'query-string';
 import uuid from 'uuid/v4';
-import axios from 'axios';
-import Config from 'react-native-config'
+import Config from 'react-native-config';
+import api from '../../api/index';
 import { Actions } from 'react-native-router-flux';
 import { setToken } from '../../actions/login';
+
+const SCOPE = 'read_qiita write_qiita';
 
 class Login extends Component {
   componentDidMount() {
@@ -15,7 +17,7 @@ class Login extends Component {
 
     const query = {
       client_id: Config.CLIENT_ID,
-      scope: 'read_qiita+write_qiita',
+      scope: SCOPE,
       state: this.checkToken
     };
 
@@ -38,7 +40,7 @@ class Login extends Component {
       code
     };
 
-    axios.post('https://qiita.com/api/v2/access_tokens', query)
+    api.fetchAccessToken(query)
       .then(res => this.props.onLoadToken(res.data.token))
       .then(() => Actions.home());
     Linking.removeEventListener('url', this._handleOpenURL);
