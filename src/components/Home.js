@@ -32,6 +32,10 @@ export default class HomeScreen extends Component {
           title="新着記事へ"
         />
         <Button
+          onPress={Actions.login}
+          title="ログイン"
+        />
+        <Button
           onPress={Actions.searchArticles}
           title="検索"
         />
