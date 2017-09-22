@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { TextInput, Button, ScrollView, ActivityIndicator } from 'react-native';
+import {
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  ActivityIndicator,
+  StyleSheet
+} from 'react-native';
 import { connect } from 'react-redux';
 import { searchArticles } from '../../actions/search_articles';
 import Card from "../common/Card";
+import TabBar from '../common/TabBar';
 
 class NewArticles extends Component {
   static navigationOptions = {
@@ -23,9 +31,6 @@ class NewArticles extends Component {
   }
 
   renderArticles() {
-    if (!this.props.articles) {
-      return;
-    }
     return this.props.articles.map(article => {
       return <Card key={article.id} article={article} />
     });
@@ -33,26 +38,44 @@ class NewArticles extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <TextInput
-          style={{ height: 40 }}
-          placeholder="Type here to search word"
-          onChangeText={(query) => this.setState({ query })}
-        />
-        <Button
-          title="検索"
-          onPress={() => this.search()}
-        />
-        <ActivityIndicator
-          animating={this.state.isLoading}
-          style={{ alignItems: 'center', justifyContent: 'center', padding: 8, height: 40 }}
-          size="large"
-        />
-        {this.renderArticles()}
-      </ScrollView>
+      <View style={styles.main}>
+        <ScrollView>
+          <TextInput
+            style={styles.input}
+            placeholder="Type here to search word"
+            onChangeText={(query) => this.setState({ query })}
+          />
+          <Button
+            title="検索"
+            onPress={() => this.search()}
+          />
+          <ActivityIndicator
+            animating={this.state.isLoading}
+            style={styles.indicator}
+            size="large"
+          />
+          {this.renderArticles()}
+        </ScrollView>
+        <TabBar/>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+  },
+  input: {
+    height: 40
+  },
+  indicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
+    height: 40
+  }
+});
 
 const mapStateToProps = state => ({
   articles: state.search,
