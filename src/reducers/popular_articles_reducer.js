@@ -1,10 +1,10 @@
 import { handleActions } from 'redux-actions';
-import Types from '../../type.root';
+import { GET_POPULAR_ARTICLES } from '../../type.root';
 
-const defaultState = { data: null };
+const defaultState = [];
 
 export default handleActions({
-  [Types.GET_POPULAR_ARTICLES]: (state, actions) => ({
+  [GET_POPULAR_ARTICLES.getPopularArticles]: (state, actions) => ({
     ...state,
     data: actions.payload || null
   })

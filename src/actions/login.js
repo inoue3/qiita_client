@@ -1,4 +1,3 @@
-import { createActions } from 'redux-actions'
-import { actions } from '../../type.root'
+import { LOGIN } from '../../type.root'
 
-export const setToken = token => (dispatch) => dispatch(actions.login(token));
+export const setToken = token => (dispatch) => dispatch(LOGIN.login(token));
