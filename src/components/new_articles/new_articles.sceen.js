@@ -23,11 +23,9 @@ class NewArticles extends Component {
   render() {
     return (
       <View>
-        <View>
           <ScrollView>
             {this.renderArticles()}
           </ScrollView>
-        </View>
         <View>
           <TabBar/>
         </View>
