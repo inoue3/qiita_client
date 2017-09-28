@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "query-string": "^5.0.0",
     "react": "^16.0.0-rc.3",
     "react-native": "^0.47.2",

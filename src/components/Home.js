@@ -55,6 +55,7 @@ class HomeScreen extends Component {
           title="検索"
         />
         <Button
+          disabled={!this.props.isLoggedIn}
           onPress={Actions.stockArticles}
           title="ストック一覧"
         />

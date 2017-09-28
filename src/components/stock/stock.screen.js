@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchStock } from '../../actions/stock_action';
+import { fetchStock, fetchNextStock } from '../../actions/stock_action';
 import Card from "../common/Card";
 
 class StockScreen extends Component {
   state = {
     isLoading: false,
+    canNextFetch: true,
     page: 1,
   };
 
@@ -31,14 +32,23 @@ class StockScreen extends Component {
   }
 
   fetchNextArticles() {
-    this.setState({ page: this.state.page + 1 });
-    this.fetchArticles();
+    if (!this.state.canNextFetch) {
+      return;
+    }
+
+    const size = this.props.stockArticles.length;
+    const page = this.state.page + 1;
+    this.setState({ page });
+    setTimeout(() => this.props.fetchNextStock(page).then(() => {
+      if (size === this.props.stockArticles.length) {
+        this.setState({ canNextFetch: false })
+      }
+    }), 500);
   }
 
   fetchArticles() {
     this.setState({ isLoading: true });
-    console.log(this.state.page);
-    this.props.fetchStock(this.state.page)
+    return this.props.fetchStock()
       .then(() => this.setState({ isLoading: false }));
   }
 }
@@ -48,6 +58,6 @@ const mapStateToProps = state => ({
   stockArticles: state.stock
 });
 
-const mapDispatchToProps = { fetchStock };
+const mapDispatchToProps = { fetchStock, fetchNextStock };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockScreen);
