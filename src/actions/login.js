@@ -1,3 +1,3 @@
-import { LOGIN } from '../../type.root'
+import { actions } from '../../type.root'
 
-export const setToken = token => (dispatch) => dispatch(LOGIN.login(token));
+export const setToken = token => (dispatch) => dispatch(actions.login(token));

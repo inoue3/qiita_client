@@ -1,10 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { LOGIN } from '../../type.root';
+import { actions } from '../../type.root';
 
 const defaultState = { login: false, token: null };
 
 export default handleActions({
-  [LOGIN.login]: (state, action) => ({
+  [actions.login]: (state, action) => ({
     ...state,
     login: true,
     token: action.payload || null
