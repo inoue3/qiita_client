@@ -38,8 +38,8 @@ class NewArticles extends Component {
 
   render() {
     return (
-      <View style={styles.main}>
-        <ScrollView>
+      <View>
+        <ScrollView style={styles.main}>
           <TextInput
             style={styles.input}
             placeholder="Type here to search word"

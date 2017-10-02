@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import { Actions } from 'react-native-router-flux';
-import PopularArticles from '../popular_articles/popular_articles.sceen';
 
 class TabBar extends Component {
 
