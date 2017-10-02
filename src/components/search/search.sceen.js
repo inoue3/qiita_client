@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TextInput, Button, ScrollView, ActivityIndicator } from 'react-native';
+import { TextInput, Button, ScrollView } from 'react-native';
+import Indicator from '../common/ActiveIndicator'
 import { connect } from 'react-redux';
 import { searchArticles } from '../../actions/search_articles';
 import Card from "../common/Card";
@@ -43,11 +44,7 @@ class NewArticles extends Component {
           title="検索"
           onPress={() => this.search()}
         />
-        <ActivityIndicator
-          animating={this.state.isLoading}
-          style={{ alignItems: 'center', justifyContent: 'center', padding: 8, height: 40 }}
-          size="large"
-        />
+        <Indicator isLoading={this.state.isLoading} />
         {this.renderArticles()}
       </ScrollView>
     );
