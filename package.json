@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "react": "^16.0.0-beta.5",
+    "query-string": "^5.0.0",
+    "react": "^16.0.0-rc.3",
     "react-native": "^0.47.2",
+    "react-native-config": "^0.6.1",
     "react-native-router-flux": "^4.0.0-beta.21",
     "react-native-xml2js": "^1.0.3",
     "react-navigation": "^1.0.0-beta.12",
@@ -19,7 +21,9 @@
     "redux-actions": "^2.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "react-native-tab-navigator": "^0.3.4"
+    "react-native-tab-navigator": "^0.3.4",
+    "url": "^0.11.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
