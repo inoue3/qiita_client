@@ -4,6 +4,7 @@ import {
 	Text, View, StyleSheet, FlatList
 } from 'react-native';
 import { fetchPopularArticles } from '../../actions/popular_articles_action';
+import TabBar from '../common/TabBar';
 
 class PopularArticles extends Component {
 	static navigationOptions = {
@@ -16,23 +17,23 @@ class PopularArticles extends Component {
 
 	render() {
 		return (
-			<FlatList
-				data={this.props.data || ''}
-				keyExtractor={(item, index) => (`${this.constructor.name}-${item.id}`)}
-				renderItem={({ item }) => (
-					<View style={styles.box}>
-						<Text>
-							{item.title}
-						</Text>
-						<Text>
-							{item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').replace(/\n/g, '')}
-						</Text>
-						<Text>
-
-						</Text>
-					</View>
-				)}
-				style={styles.container} />
+			<View>
+				<FlatList
+					data={this.props.data || ''}
+					keyExtractor={(item, index) => (`${this.constructor.name}-${item.id}`)}
+					renderItem={({ item }) => (
+						<View style={styles.box}>
+							<Text>
+								{item.title}
+							</Text>
+							<Text>
+								{item.content[0]._.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').replace(/\n/g, '')}
+							</Text>
+						</View>
+					)}
+					style={styles.container} />
+			  <TabBar/>
+			</View>
 		);
 	}
 }
