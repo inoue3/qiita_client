@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { searchArticles } from '../../actions/search_articles';
 import Card from "../common/Card";
 import TabBar from '../common/TabBar';
+import ActiveIndicator from '../common/ActiveIndicator';
 
 class NewArticles extends Component {
   static navigationOptions = {
@@ -38,8 +39,8 @@ class NewArticles extends Component {
 
   render() {
     return (
-      <View>
-        <ScrollView style={styles.main}>
+      <View style={styles.main}>
+        <ScrollView>
           <TextInput
             style={styles.input}
             placeholder="Type here to search word"
@@ -49,11 +50,7 @@ class NewArticles extends Component {
             title="検索"
             onPress={() => this.search()}
           />
-          <ActivityIndicator
-            animating={this.state.isLoading}
-            style={styles.indicator}
-            size="large"
-          />
+          <ActiveIndicator isLoading={this.state.isLoading} />
           {this.renderArticles()}
         </ScrollView>
         <TabBar/>
@@ -69,12 +66,6 @@ const styles = StyleSheet.create({
   input: {
     height: 40
   },
-  indicator: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 8,
-    height: 40
-  }
 });
 
 const mapStateToProps = state => ({
