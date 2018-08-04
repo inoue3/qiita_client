@@ -1,9 +1,7 @@
 import { createActions } from 'redux-actions'
 import axios from 'axios';
 import { parseString } from 'react-native-xml2js';
-import Types from '../../type.root';
-
-export const { getPopularArticles } = createActions(Types.GET_POPULAR_ARTICLES);
+import { actions } from '../../type.root';
 
 export const fetchPopularArticles = param => (dispatch) => {
 	return axios.get('https://qiita.com/popular-items/feed')
@@ -12,6 +10,6 @@ export const fetchPopularArticles = param => (dispatch) => {
 			parseString(response.data, (err, obj) => (data = obj));
 			return data.feed.entry;
 		})
-		.then(data => dispatch(getPopularArticles(data)))
+		.then(data => dispatch(actions.getPopularArticles(data)))
 		.catch(err => console.warn(err));
 };

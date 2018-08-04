@@ -1,8 +1,8 @@
-import Types from '../../type.root';
+import { actions } from '../../type.root';
 
 export default function(state = [], action) {
   switch (action.type) {
-    case Types.SEARCH_ARTICLES:
+    case actions.searchArticles().type:
       return action.payload
   }
   return state;
